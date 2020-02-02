@@ -1,0 +1,13 @@
+.list-group-item{
+    overflow-wrap: break-word;
+}
+
+.footer{
+    background-color: #192a56;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+}

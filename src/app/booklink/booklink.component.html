@@ -1,0 +1,38 @@
+<div class="card" >
+    <div class="card-body">
+      <h3>
+        {{linkE.titulo}}
+      </h3>
+      <hr>
+      <div>
+        <h5>Resumen:</h5>  
+        <p>
+            {{linkE.resumen}}
+        </p>
+
+        <h6>Link:</h6>  
+        <div class="alert alert-info" role="alert">
+            Libro disponible en: <a href="{{linkE.link}}" class="alert-link" >{{linkE.link}}</a>
+        </div>    
+
+        <h6>Autor:</h6>  
+        <p>
+            {{linkE.autor}}
+        </p>  
+
+        <h6>Compartido por:</h6>  
+        <p>
+          <span class="badge badge-warning">{{linkE.nombre}}</span>
+        </p>
+        
+        <h6>Referencia Bibliográfica tipo APA:</h6>  
+        <p>
+            Pronto estará disponible.
+        </p>
+        
+      </div>
+      
+    </div>
+     
+</div>
+

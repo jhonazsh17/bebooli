@@ -1,0 +1,52 @@
+<!-- <p>Esta parte esta en desarrollo.</p> -->
+
+<div *ngIf="auth.user$ | async as user; else login">
+    <div class="row">
+        <div class="col"></div>
+        
+        <div class="col-md-6">
+            
+            <div class="card" style="margin-top: 2em;">
+                <div class="card-body text-center">
+                    
+                    <h5 class="text-center">Has Ingresado como:</h5>
+                    <hr>
+                    <img src="{{ user.photoURL }}" alt="" width="50%" style="border-radius: 6px; border: 3px solid #ccc"><br><br>
+                    <b>Usuario:</b><br> {{ user.displayName }}<br><br>
+                    <b>Correro Electrónico:</b><br> {{ user.email}}<br><br>
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col"></div>
+        
+    </div>
+</div>
+
+<ng-template #login>
+    <div class="row">
+        <div class="col"></div>
+        
+        <div class="col-md-6">
+            <div class="card" style="margin-top: 2em;">
+                <div class="card-body">
+                    <h5>Ingresar:</h5>
+                    <hr>
+                    <p>Accede solo con tu cuenta en <b>Google</b>, para compartir mas links de libros.</p>
+                    <button class="btn btn-primary btn-block" (click)="auth.googleSignin()"><b>Ingresa con Google</b></button>
+    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col"></div>
+        
+    </div>
+</ng-template>
+
+
+
+<router-outlet></router-outlet>

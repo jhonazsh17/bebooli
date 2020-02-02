@@ -1,0 +1,70 @@
+<div *ngIf="auth.user$ | async as user; else login">
+  <div class="card" >
+    <div class="card-body">
+      <h3>
+        Ingresar un Nuevo Link
+      </h3>
+      <hr>
+      <div>
+        <p>
+            Recuerda colocar el título del libro correctamente y el link debe pertenecer a un libro de formato preferente PDF, para que la visualización sea más rápida.
+        </p>
+        <form (ngSubmit) = "onSubmit(user)">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><b>Título del Libro</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingresar Título del Libro" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="titulo" name="titulo">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><b>Link</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingresar Link" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="link" name="link">
+        </div>
+        <div class="input-group" style="margin-bottom: 1em;">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><b>Resumen</b></span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" placeholder="Ingresar breve Resumen" [(ngModel)]="resumen" name="resumen"></textarea>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><b>Autor(es)</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Ingresar Autor(es)" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="autor" name="autor">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><b>Tu Nombre</b></span>
+            </div>
+            <input type="text" disabled class="form-control" placeholder="Ingresa tu Nombre" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="user.displayName" name="nombre" >
+          </div>
+        <button type="submit" class="btn btn-dark" >Agregar Link</button>
+      </form>
+      </div>
+      
+    </div>
+     
+</div>
+  
+</div>
+
+<ng-template #login>
+  <div class="card" >
+    <div class="card-body">
+      <h3>
+        Ingresar un Nuevo Link
+      </h3>
+      <hr>
+      <div>
+        <p>
+          Para aportar con un nuevo Link es necesario que Ingreses con una cuenta. Sólo con tu cuenta de Google es suficiente.
+          <br>
+          <a [routerLink]="['/ingresar']" class="btn btn-light" style="margin-top: 1em;"><b>Ir a Ingresar</b></a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

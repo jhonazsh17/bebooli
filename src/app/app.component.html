@@ -1,0 +1,39 @@
+
+<header class="header">
+  <div class="container">
+    <h2>BeBooLi</h2>
+    
+    <div *ngIf="auth.user$ | async as user; else login">
+      <div style="margin-bottom: .5em;">{{ user.displayName }}</div>
+      <a type="button" class="btn btn-warning" [routerLink]="['']"><b>Inicio</b></a>&nbsp;
+      <a type="button" class="btn btn-warning" [routerLink]="['agregar']"><b>Agregar +</b></a>&nbsp;
+      <button class="btn btn-warning" (click)="auth.signOut()"><b>Salir</b></button>
+    </div>
+
+    <ng-template #login>
+      <div style="margin-bottom: .5em;">Los Mejores Links de Libros, a tu alcance.</div>
+      <a type="button" class="btn btn-warning" [routerLink]="['']"><b>Inicio</b></a>&nbsp;
+      <a type="button" class="btn btn-warning" [routerLink]="['agregar']"><b>Agregar +</b></a>&nbsp;
+      <a type="button" class="btn btn-warning" [routerLink]="['ingresar']"><b>Ingresar</b></a>&nbsp;
+    </ng-template>
+    
+    
+    
+  </div>
+  
+</header>
+<main class="main">
+  
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  
+</main>
+<div class="prefooter" style="color: #aaa">
+  <div class="container text-center">
+    <small>Desarrollado por <b>@jhonazsh</b> - Ing. JHON F. MEDINA ZAPATA</small>
+  </div>
+  
+</div>
+<br><br><br><br>
+
