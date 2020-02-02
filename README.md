@@ -1,4 +1,4 @@
-# Projecto Bebooli (Beta)
+# Proyecto Bebooli (Beta)
 
 Este Proyecto es un Aplicativo web para la busqueda de Links de los mejores libros en pdf que se encuentren en internet.
 
@@ -14,9 +14,9 @@ Lo podemos ver en internet en la siguiente dirección web: https://bebooli.fireb
 
 ## ¿Quieres Aportar?
 
-Si te interesa aportar de forma humilde con este proyecto, y hacer que cresca, ademas de que puedas aprender mas y mas cada día, pues puedes escribirme a este correo: (jhonazsh.17@gmail.com). 
+Si te interesa aportar de forma HUMILDE con este proyecto, y hacer que evolucione, además de que puedas aprender mas y mas cada día, pues puedes escribirme a este correo: (jhonazsh.17@gmail.com). 
 
-Siempre que seas humilde serás bien recibido en cualquier lugar, tu aporte no solo ayuda a este proyecto sino tambien a tu cv. Piensalo. 
+Siempre que seas HUMILDE serás bien recibido en cualquier lugar, tu aporte no solo ayuda a este proyecto sino también a tu CV. ¡Piénsalo!. 
 
 ## Autor
 
