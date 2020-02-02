@@ -16,6 +16,6 @@ Lo podemos ver en internet en la siguiente dirección web: https://bebooli.fireb
 
 Creado por @jhonazsh - Jhon F. Medina Zapata.
 
-Máncora - Perú.
+Máncora - Perú
 
-2019.
+2019
