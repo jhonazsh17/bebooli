@@ -2,7 +2,9 @@
 
 Este Proyecto es un Aplicativo web para la busqueda de Links de los mejores libros en pdf que se encuentren en internet.
 
-Este Proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+- Este Proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+- Infraestructura en Firebase.
+- Diseño totalmente en Boostrap 4.
 
 ## Para ejecutarlo 
 
