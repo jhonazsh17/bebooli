@@ -12,6 +12,10 @@ Ejecuta desde cmd y ubica el directorio del proyecto para luego ingresar el coma
 
 Lo podemos ver en internet en la siguiente dirección web: https://bebooli.firebaseap.com
 
+## ¡Quieres Aportar?
+
+Si te interesa aportar de forma humilde con este proyecto, y hacer que cresca, ademas de que puedas aprender mas y mas cada día, pues puedes escribirme a este correo: jhonazsh.17@gmail.com. Siempre que seas humilde serás bien recibido en cualquier lugar, tu aporte no solo ayuda a este proyecto sino tambien a tu cv. Piensalo. 
+
 ## Autor
 
 Creado por @jhonazsh - Jhon F. Medina Zapata.
