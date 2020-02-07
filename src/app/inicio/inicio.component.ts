@@ -14,9 +14,15 @@ export class InicioComponent implements OnInit {
   linksEncontrados = [];
   stateSearch:boolean = true;
   wordSearch = "";
+  cantidadLinks : any = 0; 
 
   constructor(public db: AngularFireDatabase){ 
-    this.links = db.list('book-links').valueChanges();   
+    this.links = db.list('book-links').valueChanges();
+
+    //cantidad de links
+    this.links.subscribe(result => { 
+      this.cantidadLinks = result.length;
+    });   
   }
 
   ngOnInit() {
@@ -31,6 +37,7 @@ export class InicioComponent implements OnInit {
         this.links.subscribe(result => { 
           let len : any = result.length; 
 
+          this.cantidadLinks = len;
           let w = this.wordSearch.toUpperCase();
 
           for (let index = 0; index < len; index++) {

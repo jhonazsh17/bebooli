@@ -20,6 +20,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FilterPipe } from './filter.pipe';
+import { UserComponent } from './user/user.component';
 
 //Mis rutas de la app
 const router: Routes = [
@@ -38,6 +39,10 @@ const router: Routes = [
   { 
     path: 'booklink/:id',
     component: BooklinkComponent
+  },
+  { 
+    path: 'user/:uid',
+    component: UserComponent
   }
 ];
 
@@ -50,6 +55,7 @@ const router: Routes = [
     IngresarComponent,
     BooklinkComponent,
     FilterPipe,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

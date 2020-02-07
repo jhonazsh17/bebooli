@@ -1,11 +1,10 @@
 
-<footer class="footer" >
-  <div class="container">
-    <input class="form-control form-control-lg" type="text" placeholder="Buscar Libro..." (keyup)="sendWordToSearch()" [(ngModel)]="wordSearch" >
-  </div>
-</footer>
+Links Agregados: <b>{{cantidadLinks}}</b> 
+
+<hr>
+
 <ng-template [ngIf]="stateSearch" >
-  <a *ngFor="let link of links | async" [routerLink]="['/booklink',link.id]" class="list-group-item list-group-item-action" >
+  <a class="linkone" *ngFor="let link of links | async" [routerLink]="['/booklink',link.id]" class="list-group-item list-group-item-action" >
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{link.titulo}}</h5>
       <small>{{link.fecha}}</small>
@@ -17,7 +16,7 @@
  </ng-template>
  
  <ng-template [ngIf]="stateSearch==false" >
-  <a *ngFor="let link of linksEncontrados " [routerLink]="['/booklink',link.id]" class="list-group-item list-group-item-action" >
+  <a class="linkone" *ngFor="let link of linksEncontrados " [routerLink]="['/booklink',link.id]" class="list-group-item list-group-item-action" >
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{link.titulo}}</h5>
       <small>{{link.fecha}}</small>
@@ -27,5 +26,11 @@
    
   </a>
  </ng-template>
+
+ <footer class="footer" >
+  <div class="container">
+    <input class="form-control form-control-lg" type="text" placeholder="Buscar Libro..." (keyup)="sendWordToSearch()" [(ngModel)]="wordSearch" >
+  </div>
+</footer>
 
  
