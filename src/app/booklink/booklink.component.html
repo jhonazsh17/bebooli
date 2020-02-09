@@ -1,8 +1,17 @@
 <div class="card" >
     <div class="card-body">
-      <h3>
-        {{linkE.titulo}}
-      </h3>
+     
+      <div class="row">
+        <div class="col-md-9 col-xs-12">
+          <h3>
+            {{linkE.titulo}}
+          </h3>
+        </div>
+        <div class="col-md-3 col-xs-12 btn-content" style="text-align: right;">
+          <a class="btn btn-success" style="color: white" href="https://api.whatsapp.com/send?text=Te%20comparto%20este%20link%20de%20un%20Libro%20importante,%20que%20se%20que%20te%20va%20a%20ser%20útil.%20Se%20llama%20{{linkE.titulo}}%20y%20lo%20encuentra%20en:%20'https://bebooli.firebaseapp.com/booklink/{{linkE.id}}'%20Disfruta%20de%20este%20Link."><b>Compartir en Whatsapp</b></a>
+        </div>
+        <!-- Te comparto%20%este%20%link%20%de%20%un%20%Libro%20%importante,%20%que%20%se%20%que%20%te%20%va%20%a%20%ser%20%útil.%20%Se%20%llama%20%{{linkE.titulo}}%20%y%20%lo%20%encuentras%20%en:%20%https://bebooli.firebaseapp.com/#/booklink/{{linkE.id}} -->
+      </div>
       <hr>
       <div>
         <h5>Resumen:</h5>  
@@ -15,9 +24,9 @@
             Libro disponible en: <a href="{{linkE.link}}" class="alert-link" >{{linkE.link}}</a>
         </div>    
 
-        <h6>Autor:</h6>  
+        <h6>Autor(es):</h6>  
         <p>
-            {{linkE.autor}}
+          {{linkE.autor}}  
         </p>  
 
         <h6>Compartido por:</h6>  
@@ -30,6 +39,17 @@
             Pronto estará disponible.
         </p>
         
+      </div>
+      <hr>
+      <div class="row">
+        
+        <div class="col col-xs-12 btn-content" >
+          <h5 style="color: #84a543;"><b>¡Hey tu, si tu!</b></h5>
+          <p style="font-style: italic; color: #848484">
+            Tu que estas viendo el Link de este Libro, si estas dispuesto a <b>aportar</b> para que este aplicativo web <b>BeBooLi</b> tenga mucho más contenido. Apoyanos agregando mas Links y <b>Compartelos</b>. 
+          </p>
+          <a class="btn btn-warning" [routerLink]="['/agregar']"><b>Agregar un Nuevo Link</b></a>
+        </div>
       </div>
       
     </div>

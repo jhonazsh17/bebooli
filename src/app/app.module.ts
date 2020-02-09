@@ -61,7 +61,7 @@ const router: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(router, {useHash: true}),
+    RouterModule.forRoot(router),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,

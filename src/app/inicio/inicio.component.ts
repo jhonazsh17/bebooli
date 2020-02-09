@@ -18,6 +18,7 @@ export class InicioComponent implements OnInit {
 
   constructor(public db: AngularFireDatabase){ 
     this.links = db.list('book-links').valueChanges();
+    
 
     //cantidad de links
     this.links.subscribe(result => { 
