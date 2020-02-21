@@ -1,4 +1,4 @@
-<div class="card" >
+<div class="card" style="margin-top: 1em;">
     <div class="card-body">
      
       <div class="row">
@@ -13,46 +13,312 @@
         <!-- Te comparto%20%este%20%link%20%de%20%un%20%Libro%20%importante,%20%que%20%se%20%que%20%te%20%va%20%a%20%ser%20%útil.%20%Se%20%llama%20%{{linkE.titulo}}%20%y%20%lo%20%encuentras%20%en:%20%https://bebooli.firebaseapp.com/#/booklink/{{linkE.id}} -->
       </div>
       <hr>
-      <div>
-        <h5>Resumen:</h5>  
-        <p>
-            {{linkE.resumen}}
-        </p>
 
-        <h6>Link:</h6>  
-        <div class="alert alert-info" role="alert">
-            Libro disponible en: <a href="{{linkE.link}}" class="alert-link" >{{linkE.link}}</a>
-        </div>    
+      <!-- Muestra botones editar y dar de baja, cuando este logueado y sea el user quien subió el link -->
+      <div *ngIf="auth.user$ | async as user; else login">
+        
+        <div *ngIf="user.uid==linkE.user_id">
 
-        <h6>Autor(es):</h6>  
-        <p>
-          {{linkE.autor}}  
-        </p>  
+          <div *ngIf="editar else noeditar">
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <h4 style="color:#d39e00; margin-top: .1em;">Estas Editando este Link de Libro</h4>
+              </div>
+              <div class="col-md-6 col-sm-6 text-right">
+                <button  class="btn btn-light" style="color:#2e4c98" (click)="onClickVolver()"><b>Volver</b></button>
+              </div>
+            </div>
+          </div>
 
-        <h6>Compartido por:</h6>  
-        <p>
-          <span class="badge badge-warning">{{linkE.nombre}}</span>
-        </p>
-        
-        <h6>Referencia Bibliográfica tipo APA:</h6>  
-        <p>
-            Pronto estará disponible.
-        </p>
-        
-      </div>
-      <hr>
-      <div class="row">
-        
-        <div class="col col-xs-12 btn-content" >
-          <h5 style="color: #84a543;"><b>¡Hey tu, si tu!</b></h5>
-          <p style="font-style: italic; color: #848484">
-            Tu que estas viendo el Link de este Libro, si estas dispuesto a <b>aportar</b> para que este aplicativo web <b>BeBooLi</b> tenga mucho más contenido. Apoyanos agregando mas Links y <b>Compartelos</b>. 
-          </p>
-          <a class="btn btn-warning" [routerLink]="['/agregar']"><b>Agregar un Nuevo Link</b></a>
+          <ng-template #noeditar>
+            <a class="btn btn-secondary"style="color:white" (click)="onClickEditar()"><b>Editar</b></a>&nbsp;
+            <a *ngIf="linkE.estado==1" class="btn btn-danger" style="color:white" data-toggle="modal" data-target="#exampleModal" ><b>[x] Dar de Baja</b></a>
+          </ng-template>
+          
+          
+         
+          <hr>
         </div>
+        
+        
       </div>
+
+      <ng-template #login>
+        <!-- Nada para mostrar -->
+      </ng-template>
+      <!-- ------------------ Fin ---------------------- -->
       
+      <!-- Primer template que se muestra - la información del booklink -->
+      <div *ngIf="firstTemplate">
+        <div *ngIf="linkE.estado==1 else debaja">
+          <h5>Resumen:</h5>  
+          <p>
+              {{linkE.resumen}}
+          </p>
+  
+          <h6>Link:</h6>  
+          <div class="alert alert-info" role="alert">
+              Libro disponible en: <a href="{{linkE.link}}" class="alert-link" >{{linkE.link}}</a>
+          </div> 
+          
+          <h6>Año:</h6>  
+          <p *ngIf="linkE.anio!='-' else sinanio1">
+            {{linkE.anio}}
+          </p>
+
+          <ng-template #sinanio1>
+            <p>
+              Agregar año&nbsp;
+              <a class="btn btn-light" (click)="onClickEditar()"><b>Editar</b></a>
+            </p>
+          </ng-template>
+  
+          <h6>Autor(es):</h6>  
+          <p>
+            {{linkE.autor}}  
+          </p>  
+  
+          <h6>Compartido por:</h6>  
+          <p>
+            <span class="badge badge-warning">{{linkE.nombre}}</span>
+          </p>
+          
+          <h6>Referencia Bibliográfica tipo APA:</h6>  
+          <p>
+              Pronto estará disponible.
+          </p>
+          
+        </div>
+
+        <ng-template #debaja>
+          <p class="text-center"><span class="badge badge-pill badge-secondary">Link de Baja</span></p>
+          <div class="card" style="margin-bottom: 1em;">
+            <div class="card-body">
+              <h6 style="text-decoration: underline;">Razón de baja:</h6>
+              
+              {{linkDownE.reason}}
+              
+            </div>
+          </div>
+          <div style="opacity: .3">
+            <div class="alert alert-secondary" role="alert">
+              <h5>Resumen:</h5>  
+              <p>
+                  {{linkE.resumen}}
+              </p>
+      
+              <h6>Año:</h6>  
+              <p *ngIf="linkE.anio!='-' else sinanio">
+                {{linkE.anio}}
+              </p>
+
+              <ng-template #sinanio>
+                <p>
+                  Sin año.
+                </p>
+              </ng-template>
+
+              <h6>Link:</h6>  
+              <p>
+                Libro disponible en: <a href="#" class="alert-link" aria-disabled="">{{linkE.link}}</a>
+              </p>
+
+              <h6>Autor(es):</h6>  
+              <p>
+                {{linkE.autor}}  
+              </p>  
+            </div>
+          </div>
+
+          
+        </ng-template>
+        <hr>
+        <div class="row">
+          
+          <div class="col col-xs-12 btn-content" >
+            <h5 style="color: #84a543;"><b>¡Hey tu, si tu!</b></h5>
+            <p style="font-style: italic; color: #848484">
+              Tu que estas viendo el Link de este Libro, si estas dispuesto a <b>aportar</b> para que este aplicativo web <b>BeBooLi</b> tenga mucho más contenido. Apoyanos agregando mas Links y <b>Compartelos</b>. 
+            </p>
+            <a class="btn btn-warning" [routerLink]="['/agregar']"><b>Agregar un Nuevo Link</b></a>
+          </div>
+        </div>
+        <hr>
+
+        <div *ngIf="linkE.estado==1 else eliminar">
+          <!-- Nada para mostrar -->
+        </div>
+
+        <ng-template #eliminar class="col col-xs-12 btn-content">
+          <div class="btn-content">
+            <p>Si este Link, no merece estar mas en <b>Bebooli</b>, lo mejor es:</p>
+            <button class="btn btn-secondary"  data-toggle="modal" data-target="#exampleModalEliminar"><b>Eliminar este Link</b></button>
+          </div>
+          
+        </ng-template>
+      </div>
+      <!-- --------------------- fin ------------------------------ -->
+      
+      <!-- template editar -->
+      <div *ngIf="editar">
+        <form (ngSubmit) = "onSubmitUpdate(linkE.key)">
+        
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Título del Libro</b></label>
+            <input type="text" class="form-control" placeholder="Ingresar Título del Libro" [(ngModel)]="linkE.titulo" name="titulo">
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Link</b></label>
+            <input type="text" class="form-control" placeholder="Ingresar Link" [(ngModel)]="linkE.link" name="link">
+            <small id="emailHelp" class="form-text text-muted">Links de PDFs en Internet.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Resumen</b></label>
+            <textarea class="form-control" aria-label="With textarea" rows="8" placeholder="Ingresar breve Resumen" [(ngModel)]="linkE.resumen" name="resumen"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Año</b></label>
+            <input type="number" class="form-control" placeholder="Ingresar Añode Publicación" [(ngModel)]="linkE.anio" name="anio">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Autor(es)</b></label>
+            <input type="text" class="form-control" placeholder="Ingresar Autor(es)" [(ngModel)]="linkE.autor" name="autor">
+            <small id="emailHelp" class="form-text text-muted">Separa los Autores con comas.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Compartido por</b></label>
+            
+            <input type="text" *ngIf="auth.user$ | async as user" class="form-control" disabled placeholder="Ingresar Autor(es)" [(ngModel)]="user.displayName" name="nombre">
+            
+          </div>
+          
+          
+          <button type="submit" class="btn btn-dark" ><b>Guardar Cambios</b></button>
+        </form>
+      </div>
+      <!-- ---- fin ----- -->
     </div>
      
+</div>
+
+<!-- Modal de Mensaje de Validación Editar-->
+<div class="modal fade" id="modalValidationEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Asegurate que:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Para Editar, todos los campos no deben estar vacíos.</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal"><b>Aceptar</b></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dar de Baja</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: #717171"><b>Link del Libro:</b> {{linkE.titulo}}</p>
+        <p style="color: #aaa">
+          <small>Esta acción solo tu la puedes realizar.</small> 
+        </p>
+        <h5>¿Estás seguro que deseas dar de Baja este link?</h5>
+        <div class="form-group">
+          <!-- <label>Example textarea</label> -->
+          <textarea class="form-control" rows="5" placeholder="Explicanos ¿Por qué?" [(ngModel)]="messageBaja"></textarea>
+        </div>
+        <p class="text-center" style="color:red">
+          {{messageValidationBaja}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><b>Cerrar</b></button>
+        <button type="button" class="btn btn-dark" (click)="onClickDarDeBaja(linkE, 1)" ><b>Dar de Baja</b></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dar de Baja</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Se ha dado de baja correctamente al link del libro:</h6>
+        <p>
+          {{linkE.titulo}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClickDarDeBaja(linkE, 2)"><b>Cerrar</b></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal eliminar -->
+<div class="modal fade" id="exampleModalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Vas a eliminar el Link del Libro:</h6>
+        <p>
+          {{linkE.titulo}}
+        </p>
+        <h6>¿Estas seguro de realizar esta acción?</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><b>No</b></button>
+        <button type="button" class="btn btn-danger" (click)="eliminarLink(1)"><b>Si</b></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal confirmación eliminar -->
+<div class="modal fade" id="messageEliminarConfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Se eliminó correctamente.</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="eliminarLink(2)"><b>Aceptar</b></button>
+      </div>
+    </div>
+  </div>
 </div>
 

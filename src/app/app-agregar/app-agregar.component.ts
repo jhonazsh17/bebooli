@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../services/auth.service';
 
 import { Observable } from 'rxjs';
+declare var $: any;
 
 @Component({
   selector: 'app-agregar',
@@ -18,6 +19,7 @@ export class AppAgregarComponent implements OnInit {
   autor='';
   nombre='';
   email="";
+  anio='';
 
   constructor(public db: AngularFireDatabase, public auth: AuthService){ 
     this.links = db.list('book-links').valueChanges();
@@ -50,28 +52,31 @@ export class AppAgregarComponent implements OnInit {
 
   onSubmit(user:any){
 
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
-    let seg = today.getSeconds();
-    let min = today.getMinutes();
-    let hour = today.getHours();
- 
-    let hoy = dd + '/' + mm + '/' + yyyy +" - "+String(hour).padStart(2, '0')+":"+String(min).padStart(2, '0')+":"+String(seg).padStart(2, '0');
-    
+    if(this.titulo!=""&&this.link!=""&&this.resumen!=""&&this.autor!=""&&this.anio!=""){
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let yyyy = today.getFullYear();
+      let seg = today.getSeconds();
+      let min = today.getMinutes();
+      let hour = today.getHours();
+  
+      let hoy = dd + '/' + mm + '/' + yyyy +" - "+String(hour).padStart(2, '0')+":"+String(min).padStart(2, '0')+":"+String(seg).padStart(2, '0');
 
-    console.log(this.nombre);
-
-    this.db.list('book-links').push({id: this.getIdAleatorio(), titulo: this.titulo, link: this.link, resumen: this.resumen, autor: this.autor, nombre: user.displayName , email: user.email, fecha: hoy });
-    this.titulo = '';
-    this.link = '';
-    this.resumen = '';
-    this.autor = '';
-    this.nombre = '';
-    this.email = '';
+      this.db.list('book-links').push({id: this.getIdAleatorio(), titulo: this.titulo, link: this.link, resumen: this.resumen, autor: this.autor, nombre: user.displayName , email: user.email, user_id: user.uid, fecha: hoy, estado:1, anio: this.anio });
+      this.titulo = '';
+      this.link = '';
+      this.resumen = '';
+      this.autor = '';
+      this.nombre = '';
+      this.email = '';
+      this.anio = '';
+      
+      location.href = "/#/";
+    }else{
+      $('#modalValidation').modal('show');
+    }
     
-    location.href = "/#/";
   }
 
 

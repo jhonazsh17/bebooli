@@ -1,8 +1,8 @@
 <div *ngIf="auth.user$ | async as user; else login">
-  <div class="card" >
+  <div class="card" style="margin-top: 1em;">
     <div class="card-body">
       <h3>
-        Ingresar un Nuevo Link
+        Agregar un Nuevo Link
       </h3>
       <hr>
       <div>
@@ -23,7 +23,11 @@
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1"><b>Resumen</b></label>
-          <textarea class="form-control" aria-label="With textarea" placeholder="Ingresar breve Resumen" [(ngModel)]="resumen" name="resumen"></textarea>
+          <textarea class="form-control" aria-label="With textarea" rows="8" placeholder="Ingresar breve Resumen" [(ngModel)]="resumen" name="resumen"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1"><b>Año</b></label>
+          <input type="number" class="form-control" placeholder="Ingresar Año de su Publicación" [(ngModel)]="anio" name="año">
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1"><b>Autor(es)</b></label>
@@ -37,7 +41,7 @@
         </div>
         
         
-        <button type="submit" class="btn btn-dark" >Agregar Link</button>
+        <button type="submit" class="btn btn-dark" ><b>Agregar Link</b></button>
       </form>
       </div>
       
@@ -48,10 +52,10 @@
 </div>
 
 <ng-template #login>
-  <div class="card" >
+  <div class="card" style="margin-top: 1em;">
     <div class="card-body">
       <h3>
-        Ingresar un Nuevo Link
+        Agregar un Nuevo Link
       </h3>
       <hr>
       <div>
@@ -65,3 +69,24 @@
   </div>
 
 </ng-template>
+
+<!-- Modal de Mensaje de Validación -->
+<div class="modal fade" id="modalValidation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Asegurate de:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Colocar todos los <b>datos del link que vas a publicar</b>. Al parecer esta quedando alguno vacío.</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal"><b>Aceptar</b></button>
+      </div>
+    </div>
+  </div>
+</div>

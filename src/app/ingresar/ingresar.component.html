@@ -6,7 +6,7 @@
         
         <div class="col-md-6">
             
-            <div class="card" style="margin-top: 2em;">
+            <div class="card" style="margin-top: 1em;">
                 <div class="card-body text-center">
                     
                     <h5 class="text-center">Has Ingresado como:</h5>
@@ -15,7 +15,8 @@
                     <b>Usuario:</b><br> {{ user.displayName }}<br><br>
                     <b>Correro Electrónico:</b><br> {{ user.email}}<br><br>
 
-                    
+                    <a [routerLink]="['/user',user.uid]" class="btn btn-warning"><b>Ver Perfil</b></a>&nbsp;
+                    <a [routerLink]="['/agregar']" class="btn btn-dark"><b>Agregar +</b></a>
                     
                 </div>
             </div>
@@ -31,7 +32,7 @@
         <div class="col"></div>
         
         <div class="col-md-6">
-            <div class="card" style="margin-top: 2em;">
+            <div class="card" style="margin-top: 1em;">
                 <div class="card-body">
                     <h5>Ingresar:</h5>
                     <hr>

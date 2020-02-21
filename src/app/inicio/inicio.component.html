@@ -1,10 +1,12 @@
+<div style="margin-top: 1em;">
+  Links Compartidos: <b>{{cantidadLinks}}</b> 
+</div>
 
-Links Agregados: <b>{{cantidadLinks}}</b> 
 
 <hr>
 
 <ng-template [ngIf]="stateSearch" >
-  <a class="linkone" *ngFor="let link of links | async" [routerLink]="['/booklink',link.id]" class="list-group-item list-group-item-action" >
+  <a class="linkone" *ngFor="let link of links2" [routerLink]="['/booklink',link.id]" (click)="pushViews(link)" class="list-group-item list-group-item-action" >
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{link.titulo}}</h5>
       <small>{{link.fecha}}</small>
@@ -17,7 +19,7 @@ Links Agregados: <b>{{cantidadLinks}}</b>
  </ng-template>
  
  <ng-template [ngIf]="stateSearch==false" >
-  <a class="linkone" *ngFor="let link of linksEncontrados " [routerLink]="['/booklink',link.id]" class="list-group-item list-group-item-action" >
+  <a class="linkone" *ngFor="let link of linksEncontrados " [routerLink]="['/booklink',link.id]" (click)="pushViews(link)" class="list-group-item list-group-item-action" >
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{link.titulo}}</h5>
       <small>{{link.fecha}}</small>
